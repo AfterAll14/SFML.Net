@@ -128,6 +128,21 @@ namespace SFML.Graphics
             }
         }
 
+        public Transformable Parent
+        {
+            get
+            {
+                return myParent;
+            }
+
+            set
+            {
+                myParent = value;
+                myTransformNeedUpdate = true;
+                myInverseNeedUpdate = true;
+            }
+        }
+
         ////////////////////////////////////////////////////////////
         /// <summary>
         /// The combined transform of the object
@@ -137,7 +152,7 @@ namespace SFML.Graphics
         {
             get
             {
-                if (myTransformNeedUpdate)
+                //if (myTransformNeedUpdate)
                 {
                     myTransformNeedUpdate = false;
 
@@ -154,6 +169,10 @@ namespace SFML.Graphics
                     myTransform = new Transform(sxc, sys, tx,
                                                 -sxs, syc, ty,
                                                 0.0F, 0.0F, 1.0F);
+                    if (myParent != null)
+                    {
+                        myTransform = myParent.Transform * myTransform;
+                    }
                 }
                 return myTransform;
             }
@@ -200,6 +219,7 @@ namespace SFML.Graphics
             // or not the final object (if used as a base for a drawable class)
         }
 
+        private Transformable myParent = null;
         private Vector2f myOrigin = new Vector2f(0, 0);
         private Vector2f myPosition = new Vector2f(0, 0);
         private float myRotation = 0;
