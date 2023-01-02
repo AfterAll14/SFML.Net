@@ -18,6 +18,8 @@ namespace SFML.Graphics
         Transformable canvas = new Transformable();
         public uint BaseWindowWidth { get; private set; }
         public uint BaseWindowHeight { get; private set; }
+        Text text = new Text();
+        RectangleShape rectangleShape = new RectangleShape(new Vector2f(1, 1));
 
         ////////////////////////////////////////////////////////////
         /// <summary>
@@ -803,6 +805,29 @@ namespace SFML.Graphics
             float scaleX = (float)BaseWindowWidth / (float)args.Width;
             float scaleY = (float)BaseWindowHeight / (float)args.Height;
             canvas.Scale = new Vector2f(scaleX, scaleY);
+        }
+
+        public void DrawText(string text, Vector2f position, Font font, uint characterSize)
+        {
+            this.text.DisplayedString = text;
+            this.text.Position = position;
+            this.text.Font = font;
+            this.text.CharacterSize = characterSize;
+
+            Draw(this.text);
+        }
+
+        public void DrawLine(Vector2f start, Vector2f end, float thickness, Color color)
+        {
+            Vector2f direction = end - start;
+            float length = (float)Math.Pow(direction.X * direction.X + direction.Y * direction.Y, 0.5);
+
+            rectangleShape.Position = start;
+            rectangleShape.Rotation = (float)Math.Atan2(direction.Y, direction.X) * 180.0f / (float)Math.PI;
+            rectangleShape.Size = new Vector2f(length, thickness);
+            rectangleShape.FillColor = color;
+
+            Draw(rectangleShape);
         }
 
         private View myDefaultView = null;
