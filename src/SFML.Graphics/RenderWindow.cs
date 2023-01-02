@@ -825,6 +825,7 @@ namespace SFML.Graphics
             rectangleShape.Position = start;
             rectangleShape.Rotation = (float)Math.Atan2(direction.Y, direction.X) * 180.0f / (float)Math.PI;
             rectangleShape.Size = new Vector2f(length, thickness);
+            rectangleShape.Origin = new Vector2f(0.0f, thickness * 0.5f);
             rectangleShape.FillColor = color;
 
             Draw(rectangleShape);
