@@ -15,6 +15,10 @@ namespace SFML.Graphics
     ////////////////////////////////////////////////////////////
     public class RenderWindow : Window.Window, RenderTarget
     {
+        Transformable canvas = new Transformable();
+        public uint BaseWindowWidth { get; private set; }
+        public uint BaseWindowHeight { get; private set; }
+
         ////////////////////////////////////////////////////////////
         /// <summary>
         /// Create the window with default style and creation settings
@@ -506,7 +510,7 @@ namespace SFML.Graphics
         ////////////////////////////////////////////////////////////
         public void Draw(Drawable drawable)
         {
-            Draw(drawable, RenderStates.Default);
+            Draw(drawable, new RenderStates(BlendMode.Alpha, canvas.Transform, null, null));
         }
 
         ////////////////////////////////////////////////////////////
@@ -530,7 +534,7 @@ namespace SFML.Graphics
         ////////////////////////////////////////////////////////////
         public void Draw(Vertex[] vertices, PrimitiveType type)
         {
-            Draw(vertices, type, RenderStates.Default);
+            Draw(vertices, type, new RenderStates(BlendMode.Alpha, canvas.Transform, null, null));
         }
 
         ////////////////////////////////////////////////////////////
@@ -557,7 +561,7 @@ namespace SFML.Graphics
         ////////////////////////////////////////////////////////////
         public void Draw(Vertex[] vertices, uint start, uint count, PrimitiveType type)
         {
-            Draw(vertices, start, count, type, RenderStates.Default);
+            Draw(vertices, start, count, type, new RenderStates(BlendMode.Alpha, canvas.Transform, null, null));
         }
 
         ////////////////////////////////////////////////////////////
@@ -789,6 +793,16 @@ namespace SFML.Graphics
         {
             myDefaultView = new View(sfRenderWindow_getDefaultView(CPointer));
             GC.SuppressFinalize(myDefaultView);
+
+            BaseWindowWidth = Size.X;
+            BaseWindowHeight = Size.Y;
+            this.Resized += new EventHandler<SizeEventArgs>(OnWindowResized);
+        }
+        void OnWindowResized(object sender, SizeEventArgs args)
+        {
+            float scaleX = (float)BaseWindowWidth / (float)args.Width;
+            float scaleY = (float)BaseWindowHeight / (float)args.Height;
+            canvas.Scale = new Vector2f(scaleX, scaleY);
         }
 
         private View myDefaultView = null;
