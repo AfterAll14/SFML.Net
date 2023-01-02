@@ -405,9 +405,9 @@ namespace SFML.Graphics
             }
         }
 
-        public void DrawText(string text, Vector2f position, Font font, uint characterSize)
+        public void DrawText(string text, Vector2f position, Font font, Color color, uint characterSize, TextHorizontalAlignment horizontalAlignment = TextHorizontalAlignment.Center, TextVerticalAlignment verticalAlignment = TextVerticalAlignment.Center)
         {
-            DrawingUtils.DrawText(this, text, position, font, characterSize);
+            DrawingUtils.DrawText(this, text, position, font, color, characterSize, horizontalAlignment, verticalAlignment);
         }
 
         public void DrawLine(Vector2f start, Vector2f end, float thickness, Color color)
