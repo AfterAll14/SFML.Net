@@ -202,6 +202,9 @@ namespace SFML.Graphics
         /// <summary>Predefined cyan color</summary>
         public static readonly Color Cyan = new Color(0, 255, 255);
 
+        /// <summary>Predefined cyan color</summary>
+        public static readonly Color Grey = new Color(64, 64, 64);
+
         /// <summary>Predefined (black) transparent color</summary>
         public static readonly Color Transparent = new Color(0, 0, 0, 0);
     }
