@@ -204,6 +204,9 @@ namespace SFML.Graphics
         ////////////////////////////////////////////////////////////
         void Draw(Vertex[] vertices, uint start, uint count, PrimitiveType type, RenderStates states);
 
+        void DrawText(string text, Vector2f position, Font font, uint characterSize);
+        void DrawLine(Vector2f start, Vector2f end, float thickness, Color color);
+
         ////////////////////////////////////////////////////////////
         /// <summary>
         /// Save the current OpenGL render states and matrices.

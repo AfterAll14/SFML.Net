@@ -405,6 +405,16 @@ namespace SFML.Graphics
             }
         }
 
+        public void DrawText(string text, Vector2f position, Font font, uint characterSize)
+        {
+            DrawingUtils.DrawText(this, text, position, font, characterSize);
+        }
+
+        public void DrawLine(Vector2f start, Vector2f end, float thickness, Color color)
+        {
+            DrawingUtils.DrawLine(this, start, end, thickness, color);
+        }
+
         ////////////////////////////////////////////////////////////
         /// <summary>
         /// Save the current OpenGL render states and matrices.
