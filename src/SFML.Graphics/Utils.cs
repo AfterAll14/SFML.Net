@@ -32,10 +32,7 @@ namespace SFML.Graphics
 
     public static class DrawingUtils
     {
-        static Text text = new Text();
-        static RectangleShape rectangleShape = new RectangleShape(new Vector2f(1, 1));
-
-        public static void DrawText(RenderTarget renderTarget, string displayedString, Vector2f position, Font font, Color color, uint characterSize, TextHorizontalAlignment horizontalAlignment = TextHorizontalAlignment.Center, TextVerticalAlignment verticalAlignment = TextVerticalAlignment.Center)
+        public static void DrawText(Text text, RenderTarget renderTarget, string displayedString, Vector2f position, Font font, Color color, uint characterSize, TextHorizontalAlignment horizontalAlignment = TextHorizontalAlignment.Center, TextVerticalAlignment verticalAlignment = TextVerticalAlignment.Center)
         {
             text.DisplayedString = displayedString;
             text.Font = font;
@@ -52,7 +49,7 @@ namespace SFML.Graphics
             renderTarget.Draw(text);
         }
 
-        public static void DrawLine(RenderTarget renderTarget, Vector2f start, Vector2f end, float thickness, Color color)
+        public static void DrawLine(RectangleShape rectangleShape, RenderTarget renderTarget, Vector2f start, Vector2f end, float thickness, Color color)
         {
             Vector2f direction = end - start;
 

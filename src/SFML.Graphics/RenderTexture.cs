@@ -405,14 +405,17 @@ namespace SFML.Graphics
             }
         }
 
+        Text text = new Text();
+        RectangleShape rectangleShape = new RectangleShape(new Vector2f(1, 1));
+
         public void DrawText(string text, Vector2f position, Font font, Color color, uint characterSize, TextHorizontalAlignment horizontalAlignment = TextHorizontalAlignment.Center, TextVerticalAlignment verticalAlignment = TextVerticalAlignment.Center)
         {
-            DrawingUtils.DrawText(this, text, position, font, color, characterSize, horizontalAlignment, verticalAlignment);
+            DrawingUtils.DrawText(this.text, this, text, position, font, color, characterSize, horizontalAlignment, verticalAlignment);
         }
 
         public void DrawLine(Vector2f start, Vector2f end, float thickness, Color color)
         {
-            DrawingUtils.DrawLine(this, start, end, thickness, color);
+            DrawingUtils.DrawLine(rectangleShape, this, start, end, thickness, color);
         }
 
         ////////////////////////////////////////////////////////////
