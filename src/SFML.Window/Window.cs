@@ -512,7 +512,7 @@ namespace SFML.Window
         /// </summary>
         /// <param name="e">Event to dispatch</param>
         ////////////////////////////////////////////////////////////
-        private void CallEventHandler(Event e)
+        public void CallEventHandler(Event e)
         {
             switch (e.Type)
             {
